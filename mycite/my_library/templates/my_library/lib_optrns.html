@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html</title>
+</head>
+<body>
+<h1>Welcome To My library</h1>
+<h2>The first name is{{first_name}} and his last name is{{last_name}}</h2>
+<!--<h2>The first name is{{first_name|upper}} and his last name is{{last_name|upper}}</h2>-->
+<!--<h2>The first name is{{first_name|capfirst}} and his last name is{{last_name|capfirst}}</h2>-->
+<!--<h2>The first name is{{first_name|length}} and his last name is{{last_name|length}}</h2>-->
+<h2>{{my_lst}}</h2>
+<h2>{{my_lst.2}}</h2>
+
+<ul>
+    {%for num in my_lst %}
+    <h1>{{num}}</h1>
+    <p>{{num}}</p>
+    <li>{{num}}</li>
+    {% endfor %}
+</ul>
+
+{% if user_logged_in %}
+<h1>Welcome {{first_name}} {{last_name}} to my World</h1>
+{% endif %}
+</body>
+</html>
