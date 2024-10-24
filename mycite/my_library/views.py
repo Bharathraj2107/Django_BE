@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.http import HttpResponseNotFound
+from .import models
+from .import views
+
 # Create your views here.
 # def demo(request):#it is a page
 #     return HttpResponse("welcome to my first project")
@@ -49,8 +52,33 @@ from django.http import HttpResponseNotFound
 
 #cd .. if we go into the application twice
 
-def add_numbers(request):
-    return render(request,"my_library/calculator.html")
+# def add_numbers(request):
+#     return render(request,"my_library/calculator.html")
 #interview-questions
 #migration
 #it will check the authentication  changes and steps taken
+def list_customers(request):
+    all_customers=models.Lib_Customers.objects.all()#all_customers is object
+    context_list={'Lib_Customers':all_customers}#'Lib_Customers' it is the table name
+    return render(request,'my_library/cust_details.html',context=context_list)#for ref in html we use context
+
+# def add(request):
+#     if request.POST:
+#         first_name=request.POST['First_Name']
+#         last_name=request.POST['Last_Name']
+#         age=request.POST['Age']
+#         models.Lib_Customers.objects.create(first_name=first_name, last_name=last_name, age=age)
+#         return redirect(reverse('my_library:list_customers'))
+#     else:
+#         return render(request,'my_library/add.html')
+def delete(request):
+    if request.POST:
+        pk=request.POST['pk']
+        try:
+            models.Lib_Customers.objects.get(pk=pk).delete()
+            return redirect(reverse('my_library:list_customers'))
+        except:
+            print("pk is not found")
+            return redirect(reverse('my_library:list_customers'))
+    else:
+        return render(request,'my_library/delete.html')

@@ -9,5 +9,8 @@ urlpatterns=[
     # path('<int:n1>/<int:n2>/',views.add_views),
     # path('<int:num_page>/',views.page_num_view),
     # path('oprtns/',views.oprtns_view),
-    path('calculator/',views.add_numbers),
+    # path('calculator/',views.add_numbers),
+    path('customers/',views.list_customers,name='list_customers'),
+    # path('add/',views.add,name='add'),
+    path('delete/',views.delete),
 ]
